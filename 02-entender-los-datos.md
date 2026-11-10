@@ -220,7 +220,7 @@ df = pd.read_csv("dataset/Cierre_agricola_2003_2025.csv",low_memory=False)
 df.info()
 ```
 
-### Estadísticas de las variables numéricas
+### 3.1 Estadísticas de las variables numéricas
 
 El método `describe()` calcula estadísticas descriptivas, incluyendo:
 
@@ -240,7 +240,7 @@ Para un rango de columnas:
 print(df.iloc[:, 0:10].describe().to_string(float_format="%.2f"))
 ```
 
-### Explorar las variables no numéricas
+### 3.2 Explorar las variables no numéricas
 
 Con `df.info()` identificamos las columnas de tipo `object`. Para explorar sus valores, utilizaremos los siguientes métodos:
 
