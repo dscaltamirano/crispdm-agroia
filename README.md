@@ -12,7 +12,7 @@ modelos de aprendizaje automático que apoyen la toma de decisiones.
 ## Metodología CRISP-DM
 
 <!-- 1. [Entendimiento del negocio](01-entendimiento-negocio.md) -->
-2. [Entendimiento de los datos](02-entendimiento-datos.md)
+2. [Entender los datos](02-entender-los-datos.md)
 <!--
 3. [Preparación de los datos](03-preparacion-datos.md)
 4. [Modelado](04-modelado.md)
