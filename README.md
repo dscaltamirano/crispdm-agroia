@@ -13,11 +13,11 @@ modelos de aprendizaje automático que apoyen la toma de decisiones.
 
 <!-- 1. [Entendimiento del negocio](01-entendimiento-negocio.md) -->
 2. [Entender los datos](02-entender-los-datos.md)
+3. [Preparar de los datos](03-preparar-los-datos.md)
+4. [Modelado mediante regresión](04-modelado-1-regresion.md)
 <!--
-3. [Preparación de los datos](03-preparacion-datos.md)
-4. [Modelado](04-modelado.md)
-5. [Evaluación](05-evaluacion.md)
-6. [Despliegue](06-despliegue.md)
+6. [Evaluación](05-evaluacion.md)
+7. [Despliegue](06-despliegue.md)
 -->
 
 ## Fuente de datos
