@@ -69,7 +69,7 @@ Posteriormente, por medio de la función `fit_transform` se generan los término
 
 ```python
 X_train_poli = poli.fit_transform(X_train)
-X_test_poli = poli.fit_transform(X_test)
+X_test_poli = poli.transform(X_test)
 ```
 Por ejemplo, si tenemos dos variables de entrada:
 
