@@ -152,6 +152,7 @@ Además, existen variables no consideradas en el dataset como: la demanda, los c
 
 En la siguiente sección utilizaremos **One-Hot Encoding** para incorporar estas variables categóricas y volveremos a evaluar los modelos mediante \(R^2\).
 
+---
 
 ## 2. Regresión con valores numéricos y categóricos
 
@@ -338,6 +339,76 @@ Comparamos los valores de \(R^2\) obtenidos por los tres modelos.
 - **Regresión lineal:** utiliza directamente las variables numéricas y categóricas.
 - **Regresión polinomial:** incorpora términos cuadráticos e interacciones entre las variables numéricas.
 - **Regresión logarítmica:** aplica una transformación logarítmica a las variables numéricas.
+
+---
+
+## 3 Persistencia de modelos
+
+La persistencia de modelos permite almacenar los modelos entrenados en archivos para utilizarlos posteriormente sin necesidad de repetir el proceso de entrenamiento.
+
+La biblioteca `joblib` permite almacenar y recuperar objetos de Python mediante las funciones `dump()` y `load()`, respectivamente.
+
+Guardamos los tres modelos de regresión entrenados:
+
+```python
+import joblib
+
+joblib.dump(lineal, "lineal.joblib")
+joblib.dump(polinomica, "polinomica.joblib")
+joblib.dump(logaritmica, "logaritmica.joblib")
+```
+
+Además de los modelos, necesitamos almacenar la información utilizada durante la transformación de las variables de entrada.
+
+**One-Hot Encoding**
+
+Recordemos que la función `pd.get_dummies()` genera nuevas columnas a partir de las categorías presentes en los datos. Por ejemplo, si durante el entrenamiento tenemos tres municipios:
+
+| Municipio | Loma Bonita | Tuxtepec | Isla |
+|---|---|---|---|
+| Loma Bonita | 1 | 0 | 0 |
+| Tuxtepec | 0 | 1 | 0 |
+| Isla | 0 | 0 | 1 |
+
+Si posteriormente queremos realizar una predicción para Loma Bonita, la función `pd.get_dummies()` únicamente generará la columna correspondiente a dicho municipio.
+
+Sin embargo, los modelos esperan recibir todas las columnas utilizadas durante el entrenamiento y en el mismo orden.
+
+Por esta razón, almacenamos la lista de nombres de las columnas de `X` después de aplicar One-Hot Encoding:
+
+```python
+columnas = X.columns.tolist()
+joblib.dump(columnas, "columnas.joblib")
+```
+
+**Transformación polinomial**
+
+Para el modelo de regresión polinomial también necesitamos almacenar el objeto `PolynomialFeatures`, previamente ajustado con los datos de entrenamiento. Esto nos permitirá generar los mismos términos polinómicos para los nuevos datos.
+
+```python
+joblib.dump(poli, "poly_features.joblib")
+```
+
+En el caso de la regresión logarítmica, no necesitamos almacenar un objeto adicional, ya que la transformación se realiza directamente mediante la función `np.log1p()`.
+
+**Recuperación de los modelos**
+
+En otro script de Python podemos recuperar los modelos entrenados y los objetos necesarios para transformar los nuevos datos:
+
+```python
+import joblib
+
+lineal = joblib.load("lineal.joblib")
+polinomica = joblib.load("polinomica.joblib")
+logaritmica = joblib.load("logaritmica.joblib")
+
+columnas = joblib.load("columnas.joblib")
+poli = joblib.load("poly_features.joblib")
+```
+
+De esta manera, podemos utilizar los modelos mediante la función `predict()` sin volver a ejecutar la función `fit()`, siempre que apliquemos las transformaciones correspondientes a los nuevos datos.
+
+
 
 Con estos resultados podemos analizar si incorporar información del estado, municipio y modalidad mejora la capacidad predictiva de los modelos.
 
