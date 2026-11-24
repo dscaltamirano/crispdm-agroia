@@ -56,7 +56,7 @@ lineal.fit(X_train, y_train)
 y_predicted_lin = lineal.predict(X_test)
 print("Lineal:", r2_score(y_test, y_predicted_lin))
 ```
-La función `r2_score()` calcula el coeficiente de determinación \(R^2\), que permite evaluar el ajuste del modelo. Un valor de \(R^2=1\) indica que las predicciones coinciden perfectamente con los valores reales de los datos evaluados. Sin embargo, esto no garantiza que el modelo sea capaz de realizar buenas predicciones con datos nuevos, ya que podría presentar sobreajuste.
+La función `r2_score()` calcula el coeficiente de determinación $$R^2$$, que permite evaluar el ajuste del modelo. Un valor de $$R^2=1$$ indica que las predicciones coinciden perfectamente con los valores reales de los datos evaluados. Sin embargo, esto no garantiza que el modelo sea capaz de realizar buenas predicciones con datos nuevos, ya que podría presentar sobreajuste.
 
 
 ### 1.3 Regresión polinomial de orden 2
@@ -66,7 +66,7 @@ La clase `PolynomialFeatures` de Scikit-learn permite generar términos polinóm
 poli = PolynomialFeatures(degree=2, include_bias=False)
 ```
 Posteriormente, por medio de la función `fit_transform` se generan los términos polinómicos de los datos de entrenamiento y prueba:
-
+****
 ```python
 X_train_poli = poli.fit_transform(X_train)
 X_test_poli = poli.transform(X_test)
@@ -101,7 +101,7 @@ print("Polinómica:", r2_score(y_test, y_predicted_poli))
 
 La regresión logarítmica permite modelar relaciones no lineales mediante el logaritmo de las variables de entrada.
 
-Por ejemplo, para dos variables \(x_1\) y \(x_2\), el modelo tiene la forma:
+Por ejemplo, para dos variables $$x_1$$ y $$x_2$$, el modelo tiene la forma:
 
 $$
 \hat{y}=b_0+b_1\ln(1+x_1)+b_2\ln(1+x_2)
@@ -128,7 +128,7 @@ $$
 
 Se suma `1` para poder trabajar con valores iguales a cero, ya que `ln(0)` no está definido.
 
-A diferencia de `PolynomialFeatures`, esta transformación no genera nuevas columnas: simplemente transforma los valores originales. Se requiere que las entradas sean mayores que \(-1\).
+A diferencia de `PolynomialFeatures`, esta transformación no genera nuevas columnas: simplemente transforma los valores originales. Se requiere que las entradas sean mayores que $$-1$$.
 
 Posteriormente, utilizamos `LinearRegression()` para ajustar el modelo con las variables transformadas:
 
@@ -150,7 +150,7 @@ Además, existen variables no consideradas en el dataset como: la demanda, los c
 
 **¿Podemos mejorar los modelos incorporando información geográfica y la modalidad de producción?**
 
-En la siguiente sección utilizaremos **One-Hot Encoding** para incorporar estas variables categóricas y volveremos a evaluar los modelos mediante \(R^2\).
+En la siguiente sección utilizaremos **One-Hot Encoding** para incorporar estas variables categóricas y volveremos a evaluar los modelos mediante $$R^2$$.
 
 ---
 
@@ -268,7 +268,7 @@ X_test_poli = np.column_stack((
 ))
 ```
 
-Por ejemplo, si tenemos dos variables numéricas \(x_1\) y \(x_2\), y una variable categórica \(c_1\):
+Por ejemplo, si tenemos dos variables numéricas $$x_1$$ y $$x_2$$, y una variable categórica $$c_1$$:
 
 $$
 X=[x_1,x_2,c_1]
@@ -280,7 +280,7 @@ $$
 X_{\text{poli}}=[x_1,x_2,x_1^2,x_1x_2,x_2^2,c_1]
 $$
 
-Observamos que \(c_1\) permanece sin modificar.
+Observamos que $$c_1$$ permanece sin modificar.
 
 Finalmente, entrenamos y evaluamos el modelo:
 
@@ -309,7 +309,7 @@ X_train_log[numericas] = np.log1p(X_train[numericas])
 X_test_log[numericas] = np.log1p(X_test[numericas])
 ```
 
-Por ejemplo, para dos variables numéricas \(x_1\) y \(x_2\), y una variable categórica \(c_1\):
+Por ejemplo, para dos variables numéricas $$x_1$$ y $$x_2$$, y una variable categórica $$c_1$$:
 
 $$
 X=[x_1,x_2,c_1]
@@ -334,7 +334,7 @@ print("Logarítmica:", r2_score(y_test, y_predicted_log))
 
 ### 2.5 Comparación de resultados
 
-Comparamos los valores de \(R^2\) obtenidos por los tres modelos.
+Comparamos los valores de $$R^2$$ obtenidos por los tres modelos.
 
 - **Regresión lineal:** utiliza directamente las variables numéricas y categóricas.
 - **Regresión polinomial:** incorpora términos cuadráticos e interacciones entre las variables numéricas.
