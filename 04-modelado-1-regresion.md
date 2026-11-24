@@ -73,21 +73,21 @@ X_test_poli = poli.fit_transform(X_test)
 ```
 Por ejemplo, si tenemos dos variables de entrada:
 
-\[
+$$
 X=[x_1,x_2]
-\]
+$$
 
 esta instrucción nos generará cinco características:
 
-\[
+$$
 X_{\text{poli}}=[x_1,x_2,x_1^2,x_1x_2,x_2^2]
-\]
+$$
 
 Con estas nuevas características, el modelo ajusta la ecuación:
 
-\[
+$$
 \hat{y}=b_0+b_1x_1+b_2x_2+b_3x_1^2+b_4x_1x_2+b_5x_2^2
-\]
+$$
 
 Para hacer el ajuste, se ejecuta el siguiente código:
 ```python
@@ -103,9 +103,9 @@ La regresión logarítmica permite modelar relaciones no lineales mediante el lo
 
 Por ejemplo, para dos variables \(x_1\) y \(x_2\), el modelo tiene la forma:
 
-\[
+$$
 \hat{y}=b_0+b_1\ln(1+x_1)+b_2\ln(1+x_2)
-\]
+$$
 
 Utilizamos la función `np.log1p()` de NumPy para calcular el logaritmo natural de cada valor más uno:
 
@@ -116,15 +116,15 @@ X_test_log = np.log1p(X_test)
 
 Por ejemplo, si tenemos dos variables de entrada:
 
-\[
+$$
 X=[x_1,x_2]
-\]
+$$
 
 La transformación genera:
 
-\[
+$$
 X_{\text{log}}=[\ln(1+x_1),\ln(1+x_2)]
-\]
+$$
 
 Se suma `1` para poder trabajar con valores iguales a cero, ya que `ln(0)` no está definido.
 
@@ -270,15 +270,15 @@ X_test_poli = np.column_stack((
 
 Por ejemplo, si tenemos dos variables numéricas \(x_1\) y \(x_2\), y una variable categórica \(c_1\):
 
-\[
+$$
 X=[x_1,x_2,c_1]
-\]
+$$
 
 La transformación genera:
 
-\[
+$$
 X_{\text{poli}}=[x_1,x_2,x_1^2,x_1x_2,x_2^2,c_1]
-\]
+$$
 
 Observamos que \(c_1\) permanece sin modificar.
 
@@ -311,15 +311,15 @@ X_test_log[numericas] = np.log1p(X_test[numericas])
 
 Por ejemplo, para dos variables numéricas \(x_1\) y \(x_2\), y una variable categórica \(c_1\):
 
-\[
+$$
 X=[x_1,x_2,c_1]
-\]
+$$
 
 La transformación produce:
 
-\[
+$$
 X_{\text{log}}=[\ln(1+x_1),\ln(1+x_2),c_1]
-\]
+$$
 
 Observamos que únicamente se transforman las variables numéricas, mientras que la variable categórica conserva su valor original.
 
